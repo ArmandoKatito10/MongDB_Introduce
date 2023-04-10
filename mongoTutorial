@@ -1,0 +1,37 @@
+db.pessoas.insertOne({name:"Armando",idade:28, profissao:"we_Dev", esta_empregado:"true"})
+db.pessoas.insertMany([
+    {nome:"João", idade: 40, profissao:"arquiteto", esta_empregado:false},
+    {nome:"Maria", idade:23, profissao:"professora", esta_empregado:true}
+]);
+// to show many datas 
+db.pessoas.find().pretty
+db.pessoas.find(esta_empregado:true).count()// to find how many or cont how many are on DB
+// to find one by one 
+db.pessoas.findOne({noem:"joão" })
+// to update datas we use some comands like:
+bd.pessoas.updateOne({nome:"João"}, {$set:{esta_empregado:true } })
+ // to update db and add new data to all fields we use :
+ db.pessoas.updateMany({}, {$set:{salario:50.000}})
+ // to update just one data like:
+ db.pessoas.updateOne({nome:"Maria"}, {$set:{ procuradno_emprego:false}})
+ //operators on mongoDB
+ db.pessoas.find({idade:{$gte:30}})
+ db.pessoas.find({idade:{$lte:30}})
+ db.pessoas.updateMany({idade:{$gte:35} }, {$set:{prioridade:true }})
+
+ // datas types:string, number, boolean, array, data, objects
+ db.pessoas.insertOne({
+    nome:"Paula",
+    idade:44,
+    hobies:["Correr","Ler","Trabalhar"],
+    esta_empregado:true,
+    data_cadastro: new Date(),
+    caracteristicas:{
+        cor_dos_olhos:"azuis",
+        altura:1.82,
+        perfil:"extrovertida"
+    }
+ })
+ //operators with update :increment
+ db.pessoas.updateOne({nome:"Maria"},{$inc:{ salario:1000}})
+ db.pessoas.updateOne({nome:"João"},{$inc:{ salario:-3000}})
